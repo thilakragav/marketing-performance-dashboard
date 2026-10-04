@@ -38,6 +38,7 @@ Thumbs.db
 *.db
 *.sqlite
 *.sqlite3
+!data/marketing_dashboard.db
 
 # Generated/cache data
 .pytest_cache/

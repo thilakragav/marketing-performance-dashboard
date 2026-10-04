@@ -26,18 +26,11 @@ apply_enterprise_theme()
 render_global_sidebar()
 
 # Database Engine
-DB_USER = "postgres"
-DB_HOST = "127.0.0.1"
-DB_PORT = "5432"
-DB_NAME = "marketing_dashboard"
-DB_PASSWORD = st.secrets.get("DB_PASSWORD", "")
+from app.services.database import get_database_engine
 
 @st.cache_resource
 def get_engine():
-    if not DB_PASSWORD:
-        return None
-    url = f"postgresql+psycopg2://{DB_USER}:{quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    return create_engine(url)
+    return get_database_engine()
 
 engine = get_engine()
 
